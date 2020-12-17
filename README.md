@@ -6,6 +6,12 @@ Previous "best practice" has been to do all `include`s in some "master" global f
 
 **PatModules.jl is the solution.**
 
+## Installation
+
+```julia
+] add https://github.com/patrick-kidger/PatModules.jl
+```
+
 ## Example
 Have a look at [the example](./examples/example) for a quick example. In particular, notice that:
 - `subpackage/one.jl` and `subpackage/two.jl` _both explicitly_ depend on `subpackage/utils.jl`, without errors due to redefining a module.
