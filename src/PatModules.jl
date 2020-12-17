@@ -18,7 +18,6 @@ end
 
 
 function _include(modul, to_import)
-    modul
     for importname ∈ to_import
         if isdir(importname)
             _, filename = splitdir(importname)
@@ -59,7 +58,7 @@ function _module(name::Symbol, to_import_expr::Expr, block::Expr, __module__, __
                     Core.eval($name, :(import .$importname_symbol))
                 end
             end
-            $block
+            $(block.args...)
         end
     end
     quote
