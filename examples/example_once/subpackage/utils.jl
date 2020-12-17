@@ -1,5 +1,5 @@
 using PatModules
-@auxmodule utils () begin
+@once module utils
     # Import external modules here
     # (not that Base is ever external, this is
     # just for illustration)

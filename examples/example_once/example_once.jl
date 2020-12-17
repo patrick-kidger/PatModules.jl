@@ -1,5 +1,9 @@
 using PatModules
-@mainmodule example ("subpackage", "utils") begin
+@once module example_once
+    include("subpackage/subpackage.jl")
+    include("utils.jl")
+    import .subpackage
+    import .utils
 
     function greetings()
         utils.do_nothing()

@@ -1,6 +1,5 @@
 using PatModules
 include("utils.jl")
-
 @once module two
     import ..utils
 

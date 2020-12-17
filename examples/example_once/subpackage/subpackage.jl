@@ -1,5 +1,4 @@
 using PatModules
-
 @once module subpackage
     include("one.jl")
     include("two.jl")
