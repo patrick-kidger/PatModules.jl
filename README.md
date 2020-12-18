@@ -49,4 +49,5 @@ PatModules.jl also makes available another macro, `@once`, which can be called o
 ## Future work
 There's a couple things that would still be nice to add here.
 - Add an option to have the listed imports be made available with `using` rather than `import`, if desired.
-- Add a way to access modules from enclosing non-global scopes. (Like doing `import ...mymodule`.)
+- Add an `as` option to rename what's imported.
+- Add a way to access modules from enclosing non-global scopes. (Doing `import ...mymodule` still works but doesn't give you the guarantee that it's already been included.)
