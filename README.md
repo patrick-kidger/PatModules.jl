@@ -16,8 +16,8 @@ Previous "best practice" has been to do all `include`s in some "master" global f
 Have a look at [the example](./examples/example) for a quick example. In particular, notice that:
 - `subpackage/one.jl` and `subpackage/two.jl` _both explicitly_ depend on `subpackage/utils.jl`, without errors due to redefining a module.
 - both `utils.jl` and `subpackage/utils.jl` create modules with the same name without them clashing.
-- `example.jl` can include the whole subpackage with just "subpackage", and can descend into subsubpackages at will.
-- Every file can be run stand-alone: no implicit assumptions about how the context in which the file will be `include`d.
+- `example.jl` can include the whole "subpackage" _folder_ just by specifying "subpackage", and can descend into subsubpackages at will.
+- Every file can be run stand-alone: no implicit assumptions about the context in which the file will be `include`d.
 
 ## How does it work / how do I use it?
 PatModules.jl introduces two new macros, `@mainmodule` and `@auxmodule`.
