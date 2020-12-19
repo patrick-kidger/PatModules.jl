@@ -1,6 +1,6 @@
 module PatModules
 
-export @once, @mainmodule, @auxmodule
+export @once, @mainmodule, @auxmodule, @mainmodule!, @auxmodule!
 
 # Adapted from https://github.com/JuliaLang/julia/issues/29966
 macro once(m)
@@ -29,7 +29,7 @@ function _include(modul, to_import)
 end
 
 
-function _module(name::Symbol, to_import_expr::Expr, block::Expr, __module__, __source__; is_aux::Bool)
+function _module(name::Symbol, to_import_expr::Expr, block::Expr, __module__, __source__; is_aux::Bool, is_use::Bool)
     to_import::Tuple{Vararg{String}} = map(String, eval(to_import_expr))
     for importname ∈ to_import
         @assert !occursin("/", importname)
@@ -53,9 +53,17 @@ function _module(name::Symbol, to_import_expr::Expr, block::Expr, __module__, __
             for importname ∈ $to_import
                 importname_symbol = Symbol(importname)
                 if $is_aux
-                    Core.eval($name, :(import .. $importname_symbol))
+                    if $is_use
+                        Core.eval($name, :(using .. $importname_symbol))
+                    else
+                        Core.eval($name, :(import .. $importname_symbol))
+                    end
                 else
-                    Core.eval($name, :(import .$importname_symbol))
+                    if $is_use
+                        Core.eval($name, :(using .$importname_symbol))
+                    else
+                        Core.eval($name, :(import .$importname_symbol))
+                    end
                 end
             end
             $(block.args...)
@@ -69,12 +77,22 @@ end
 
 
 macro mainmodule(name::Symbol, to_import_expr::Expr, block::Expr)
-    _module(name, to_import_expr, block, __module__, __source__; is_aux=false)
+    _module(name, to_import_expr, block, __module__, __source__; is_aux=false, is_use=false)
 end
 
 
 macro auxmodule(name::Symbol, to_import_expr::Expr, block::Expr)
-    _module(name, to_import_expr, block, __module__, __source__; is_aux=true)
+    _module(name, to_import_expr, block, __module__, __source__; is_aux=true, is_use=false)
+end
+
+
+macro mainmodule!(name::Symbol, to_import_expr::Expr, block::Expr)
+    _module(name, to_import_expr, block, __module__, __source__; is_aux=false, is_use=true)
+end
+
+
+macro auxmodule!(name::Symbol, to_import_expr::Expr, block::Expr)
+    _module(name, to_import_expr, block, __module__, __source__; is_aux=true, is_use=true)
 end
 
 end

@@ -50,7 +50,7 @@ end
 
 _Each file should have at its top level a single `@mainmodule`/`@auxmodule` with the same name as the file._ For example `subpackage/utils.jl` should have (and only have) `@auxmodule utils ...` at its top level.
 
-The next argument is a tuple of strings, specifying what you'd like to import. These can be from among the other auxiliary modules in the same folder, or the names of any subfolders (with associated main modules one level down) in the same folder. The contents of these files will be `include`d in the correct manner, and will also all be `import`ed automatically. (For example see how [subpackage.jl](./examples/example/subpackage/subpackage.jl) gets access to `one` and `two`.)
+The next argument is a tuple of strings, specifying what you'd like to import. These can be from among the other auxiliary modules in the same folder, or the names of any subfolders (with associated main modules one level down) in the same folder. The contents of these files will be `include`d in the correct manner, and will also all be `import`ed automatically. For example see how [subpackage.jl](./examples/example/subpackage/subpackage.jl) gets access to `one` and `two`. (If you would prefer it is `using`-d automatically then use `@mainmodule!` and `@auxmodule!` instead, see [`example_use`](./examples/example_use).)
 
 If you want to access something in a subsubfolder, subsubsubfolder, etc., then do so by importing the subfolder and then doing dotted look up. (For example see how [example.jl](./examples/example/example.jl) gets access to `subpackage.two`.) Do _not_ try to `include` the subsub-* directly: this kind of behaviour is dangerous, and will likely result in two mutually unintelligible copies of the same code being compiled. (Which recall was one of the things that PatModules.jl sought to fix in the first place.)
 
@@ -69,6 +69,5 @@ The main advantage of this system is that it's basically just syntactic sugar fo
 
 ## Future work
 There's a couple things that would still be nice to add here.
-- Add an option to have the listed imports be made available with `using` rather than `import`, if desired.
 - Add an `as` option to rename what's imported.
 - Add a way to have the `include` happen for modules from enclosing non-global scopes. (Doing `import ...mymodule` still works but doesn't give you the guarantee that it's already been included.)
