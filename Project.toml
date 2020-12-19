@@ -2,3 +2,6 @@ name = "PatModules"
 uuid = "a21dec46-d3f5-4597-b5d8-44806e486af6"
 authors = ["Patrick Kidger <contact@kidger.site>"]
 version = "0.1.0"
+
+[compat]
+julia = "1"
