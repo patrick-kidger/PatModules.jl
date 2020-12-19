@@ -22,7 +22,7 @@ Have a look at [the example](./examples/example) for a quick example. In particu
 - Every file can be run stand-alone: no implicit assumptions about the context in which the file will be `include`d.
 
 ### Remind me how `include`/`import`/`using` works in Julia?
-Briefly: `include` just copy-pastes the contents of one _file_ into another _file_. Generally this is a bad way to move code around, see [this](https://stackoverflow.com/questions/13570947/what-is-the-difference-between-import-and-include-choices-in-language-design) StackOverflow post. Meanwhile, `import`/`using` get the objects defined in one _module_, and make them available in another _module_.
+Briefly: `include` just copy-pastes the contents of one _file_ into another _file_. (Note that this is generally considered a bad way to move code around, see [this](https://stackoverflow.com/questions/13570947/what-is-the-difference-between-import-and-include-choices-in-language-design) StackOverflow post.) Meanwhile, `import`/`using` get the objects defined in one _module_, and make them available in another _module_.
 
 What this means for writing re-usable code: you're forced to use `include` just to make the contents of one file visible to another, and then _also_ use either `import`/`using` to access it in Julia afterwards. Besides a two-step process being a bit ugly, this has all the issues mentioned in the introduction.
 
