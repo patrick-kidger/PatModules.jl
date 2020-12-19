@@ -65,7 +65,7 @@ PatModules.jl also makes available another macro, `@once`, which can be called o
 ### Why is it implemented this way?
 There's many sensible alternative ways of creating these sorts of import systems. One way would be to emulate Python: store all the modules somewhere global (like `sys.modules` in Python) and then route all import calls there. Another way would be to build a tree of modules and then linearise it with a topological sort relative to some specified root / entry point.
 
-The main advantage of the aaproach we use here is that it's basically just syntactic sugar for the current Julia module system, and doesn't involve too much magic. (Which the metaprogramming involved in the other approaches probably would be.) This also means that PatModules.jl should be able to be introduced incrementally into a project without too many surprises.
+The main advantage of the approach we use here is that after macro expansion the end result still looks like normal Julia, and doing so doesn't involve too much magic. (Which the metaprogramming involved in the other approaches probably would be.) This means that PatModules.jl should be able to be used (or introduced incrementally into a project) without too many surprises.
 
 ## Future work
 There's a couple things that would still be nice to add here.
