@@ -4,7 +4,7 @@ Writing modular, reusable code in Julia is harder than in other languages. To ge
 
 Previous "best practice" has been to do all `include`s in some "master" global file, and have everything else implicitly assume that whatever it needs `include`-ing will in fact have been included for it. What a hard-to-maintain mess that is! You may need to get the `include`s in the global file in the right order, and you have very little way of tracking what actually depends on what. Not a good way to scale to projects larger than just a few files.
 
-\>>> PatModules.jl is the solution. <<<
+\>>> **PatModules.jl is the solution.** <<<
 
 ## Documentation
 
