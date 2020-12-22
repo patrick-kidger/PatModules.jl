@@ -60,7 +60,7 @@ If you want to access some nonlocal module, then also do that with `import`/`usi
 
 ## Advanced notes
 ### I want a lower-level interface.
-PatModules.jl also makes available another macro, `@once`, which can be called on a module definition so that it is only created once, _within the same context_, i.e. the outer module in which it is called. (It won't save you from `include`-ing the module in multiple different places.) This is what `@mainmodule` and `@auxmodule` rely on to not have to worry about importing things multiple times. Have a look at [`example_once`](./examples/example_once) for how this is used; this example mirrors the main [`example](./examples/example), so you can see what `@mainmodule` and `@auxmodule` get converted into.
+PatModules.jl also makes available another macro, `@once`, which can be called on a module definition so that it is only created once, _within the same context_, i.e. the outer module in which it is called. (It won't save you from `include`-ing the module in multiple different places.) This is what `@mainmodule` and `@auxmodule` rely on to not have to worry about importing things multiple times. Have a look at [`example_once`](./examples/example_once) for how this is used; this example mirrors the main [`example`](./examples/example), so you can see what `@mainmodule` and `@auxmodule` get converted into.
 
 ### Why is it implemented this way?
 There's many sensible alternative ways of creating these sorts of import systems. One way would be to emulate Python: store all the modules somewhere global (like `sys.modules` in Python) and then route all import calls there. Another way would be to build a tree of modules and then linearise it with a topological sort relative to some specified root / entry point.
