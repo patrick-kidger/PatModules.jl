@@ -2,7 +2,7 @@
 
 Writing modular, reusable code in Julia is harder than in other languages. To get access to any particular file you need to `include(...)` it -- but each file can only be `include`-d once. (Otherwise the definitions are evaluated multiple times, possibly in different contexts, bad things start happening.) And if a file can only be `include`-d once, then it's hard to re-use its code.
 
-Previous "best practice" has been to do all `include`s in some "master" global file, and have everything else implicitly assume that whatever it needs `include`-ing will in fact have been included for it. What a hard-to-maintain mess that is! You may need to get the `include`s in the global file in the right order, and you have very little way of tracking what actually depends on what. Not a good way to scale to projects larger than just a few files.
+Previous "best practice" has been to do all `include`s in some "master" global file, and have everything else implicitly assume that whatever it needs `include`-ing will in fact have been included for it. You may need to get the `include`s in the global file in the right order, and you have very little way of tracking what actually depends on what. That's hard to maintain, and not a good way to scale to projects larger than just a few files.
 
 \>>> **PatModules.jl is the solution.** <<<
 
@@ -11,7 +11,7 @@ Previous "best practice" has been to do all `include`s in some "master" global f
 ### Installation
 
 ```julia
-] add https://github.com/patrick-kidger/PatModules.jl
+] add PatModules
 ```
 
 ### Example
