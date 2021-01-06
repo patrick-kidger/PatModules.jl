@@ -1,3 +1,7 @@
+Have a look at [FromFile.jl](https://github.com/Roger-luo/FromFile.jl) for a probably better way of doing this. :)
+
+---
+
 # PatModules.jl
 
 Writing modular, reusable code in Julia is harder than in other languages. To get access to any particular file you need to `include(...)` it -- but each file can only be `include`-d once. (Otherwise the definitions are evaluated multiple times, possibly in different contexts, bad things start happening.) And if a file can only be `include`-d once, then it's hard to re-use its code.
